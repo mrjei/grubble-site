@@ -34,8 +34,9 @@ const { title, description } = Astro.props;
 
     <SEO title={title} description={description} />
 
-    <!-- Cloudflare Web Analytics: replace with real beacon URL -->
-    <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE_WITH_REAL_BEACON_TOKEN"}'></script> -->
+    <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "0acc0d536f2d4533832da3af1704fa84"}'></script>
+  <!-- End Cloudflare Web Analytics -->
   </head>
   <body class="min-h-screen bg-bg text-text-primary font-body antialiased">
     <slot />
