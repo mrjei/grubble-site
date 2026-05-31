@@ -2,23 +2,13 @@
 import '../styles/tokens.css';
 import '../styles/global.css';
 import SEO from '../components/SEO.astro';
-import config from '../data/config.json';
 
 interface Props {
-  title: string;
+  title?: string;
   description?: string;
-  image?: string;
-  canonical?: string;
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const {
-  title,
-  description = config.seo.description,
-  image,
-  canonical,
-  structuredData,
-} = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
@@ -42,13 +32,7 @@ const {
       href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&f[]=satoshi@300,400,500,700,900&display=swap"
     />
 
-    <SEO
-      title={title}
-      description={description}
-      image={image}
-      canonical={canonical}
-      structuredData={structuredData}
-    />
+    <SEO title={title} description={description} />
 
     <!-- Cloudflare Web Analytics: replace with real beacon URL -->
     <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE_WITH_REAL_BEACON_TOKEN"}'></script> -->

@@ -1,47 +1,82 @@
 ---
+/**
+ * SEO — single source of truth for <head> metadata. BaseLayout delegates all
+ * SEO to this component; pages pass only `title` / `description` (or nothing,
+ * to fall back to the config defaults). All values resolve from config.json.
+ *
+ * Brand sits in HEAD metadata (title, og:site_name, structured data) for SEO
+ * while the hero visual stays clean.
+ */
 import config from '../data/config.json';
 
 interface Props {
-  title: string;
-  description: string;
-  image?: string;
-  canonical?: string;
-  type?: 'website' | 'article';
-  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+  title?: string;
+  description?: string;
 }
 
 const {
-  title,
-  description,
-  image = config.seo.defaultOgImage,
-  canonical = new URL(Astro.url.pathname, config.urls.site).href,
-  type = 'website',
-  structuredData,
+  title = config.seo.defaultTitle,
+  description = config.business.description,
 } = Astro.props;
 
-const jsonLd = structuredData
-  ? Array.isArray(structuredData)
-    ? structuredData
-    : [structuredData]
-  : [];
+const siteUrl = config.urls.site;
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL(config.seo.defaultOgImage, siteUrl).href;
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: config.business.name,
+    url: siteUrl,
+    logo: new URL('/apple-touch-icon.png', siteUrl).href,
+    sameAs: [],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: config.business.name,
+    url: siteUrl,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: config.business.name,
+    applicationCategory: 'FoodAndDrinkApplication',
+    operatingSystem: 'iOS, Android, Web',
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+    description: config.business.description,
+  },
+];
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
 <link rel="canonical" href={canonical} />
 
-<meta property="og:title" content="Grubble Eats" />
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={image} />
 <meta property="og:url" content={canonical} />
-<meta property="og:type" content={type} />
-<meta property="og:site_name" content="Grubble Eats" />
+<meta property="og:site_name" content={config.business.name} />
+<meta property="og:image" content={ogImage} />
 
+<!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Grubble Eats" />
+<meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={image} />
+<meta name="twitter:image" content={ogImage} />
 
-{jsonLd.map((data) => (
+<!-- Application name (browser bookmarks, PWA hints) -->
+<meta name="application-name" content={config.business.name} />
+<meta name="apple-mobile-web-app-title" content={config.business.name} />
+
+<!-- Structured data -->
+{structuredData.map((data) => (
   <script type="application/ld+json" set:html={JSON.stringify(data)} />
 ))}
