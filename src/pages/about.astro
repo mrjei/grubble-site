@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="About — Grubble Eats"
+  description="Why we built Grubble Eats, how we're different, who's behind it, and where we're headed. Built by Tenvaro."
+>
+  <header class="px-6 py-6 border-b border-border-subtle">
+    <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
+      <BrandMark variant="squircle" size={36} title="Grubble Eats" class="rounded-md" />
+      <span class="font-display font-extrabold text-lg">Grubble Eats</span>
+    </a>
+  </header>
+
+  <main class="px-6 py-16">
+    <article class="mx-auto max-w-content">
+      <h1 class="text-4xl font-extrabold tracking-tightest">About Grubble Eats</h1>
+      <p class="mt-3 text-lg text-text-secondary text-pretty">
+        The food decision app built for groups, not just solo discovery.
+      </p>
+
+      <div class="mt-10 space-y-8 text-base leading-relaxed text-text-secondary [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-extrabold [&_h2]:tracking-tightest [&_h2]:text-text-primary [&_h2]:mb-3 [&_a]:text-primary [&_a]:underline">
+        <section>
+          <h2>Why we built it</h2>
+          <p>
+            Deciding where to eat with friends is a small, daily, universal kind
+            of misery — the group chat that loops for twenty minutes and lands
+            nowhere. Existing food apps make it worse: they're designed for one
+            person browsing a catalog alone, not a group trying to agree. We're
+            flipping that primitive.
+          </p>
+        </section>
+
+        <section>
+          <h2>How we're different</h2>
+          <p>
+            Grubble is group-first, not group-as-an-afterthought. Friends join a
+            live session and swipe the same stack in real time, and the AI
+            reasons about taste consensus — what the whole room will agree on —
+            not just one person's preferences. The decision is the product.
+          </p>
+        </section>
+
+        <section>
+          <h2>Who's behind it</h2>
+          <p>
+            Grubble Eats is built by <a href="https://tenvaro.ai" rel="noopener noreferrer">Tenvaro</a>,
+            founded by James Blanchard — an AI-augmented solo developer who ships
+            full products end to end. The stack is lean and modern: a Cloudflare
+            backend for sessions and waitlist, Flutter for native and web, and
+            Claude powering the AI surfaces.
+          </p>
+        </section>
+
+        <section>
+          <h2>Where we're headed</h2>
+          <p>
+            Right now: a public beta on the web. Next: native iOS and Android
+            apps. After that: more cities, more cuisines, and restaurant
+            partnerships that help groups discover places worth agreeing on.
+            Forward-looking — and we'll build it in the open.
+          </p>
+        </section>
+      </div>
+
+      <p class="mt-12">
+        <a href="/" class="text-primary font-bold underline">&larr; Back to home</a>
+      </p>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

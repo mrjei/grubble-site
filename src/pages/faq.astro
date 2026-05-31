@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Footer from '../components/Footer.astro';
+
+const faqs = [
+  {
+    q: 'How is Grubble Eats different from DoorDash, Uber Eats, or Yelp?',
+    a: "Those apps are catalogs — built for one person scrolling alone, then ordering. Grubble Eats is built for the moment before that: the group that can't agree where to eat. Instead of browsing endless listings, everyone swipes the same stack together and Grubble lands the decision. We're not another place to find restaurants. We're how your group actually picks one.",
+  },
+  {
+    q: 'How does the AI work?',
+    a: 'Grubble runs on Anthropic\u2019s Claude across four surfaces: a Recommender that turns a craving ("hungover, walking distance") into a tailored stack, per-card blurbs that explain why you\u2019ll like a spot, a Tiebreaker that resolves a group that can\u2019t converge, and a Recipe Assistant for cook-at-home nights. The AI is the connective tissue that makes both solo and group decisions feel intentional, not random.',
+  },
+  {
+    q: "What's the business model?",
+    a: "Free to use during launch. Down the road, revenue will come from restaurant partnerships and premium features — but we\u2019re deliberately prioritizing adoption and trust first. Get the group-decision primitive right, earn daily usage, then monetize in ways that don\u2019t compromise it.",
+  },
+  {
+    q: 'When does it launch on iOS and Android?',
+    a: "Public beta is on the web now. Native iOS and Android apps follow in Q3 2026, built in Flutter from the same codebase as the web app. Join the waitlist and we\u2019ll tell you the moment they ship.",
+  },
+  {
+    q: 'How do group sessions work?',
+    a: 'Create a session, share the code with your friends, and everyone swipes the same stack on their own phone. You match when the group converges on a spot — or instantly when someone Super Grubs a place another swiper already liked. No accounts required; the session code is the only auth.',
+  },
+  {
+    q: 'Who is the team behind Grubble Eats?',
+    a: "Grubble Eats is solo-founded by James Blanchard under parent company Tenvaro. It\u2019s an AI-augmented solo build: a Cloudflare backend (Workers + D1) for sessions and waitlist, Flutter for native and web, and Claude powering the AI surfaces. Lean by design — shipping fast without a big team.",
+  },
+];
+---
+
+<BaseLayout
+  title="FAQ — Grubble Eats"
+  description="Answers to common questions about Grubble Eats — how it's different, how the AI works, how group sessions work, launch timing, and the team."
+>
+  <header class="px-6 py-6 border-b border-border-subtle">
+    <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
+      <BrandMark variant="squircle" size={36} title="Grubble Eats" class="rounded-md" />
+      <span class="font-display font-extrabold text-lg">Grubble Eats</span>
+    </a>
+  </header>
+
+  <main class="px-6 py-16">
+    <article class="mx-auto max-w-content">
+      <h1 class="text-4xl font-extrabold tracking-tightest">Frequently asked questions</h1>
+      <p class="mt-3 text-lg text-text-secondary text-pretty">
+        The short version of what people ask about Grubble Eats.
+      </p>
+
+      <div class="mt-10 border-t border-border-subtle">
+        {
+          faqs.map((item) => (
+            <details class="group border-b border-border-subtle py-5">
+              <summary class="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg sm:text-xl font-extrabold tracking-tightest text-text-primary [&::-webkit-details-marker]:hidden">
+                <span>{item.q}</span>
+                <span
+                  class="shrink-0 text-2xl font-normal leading-none text-primary transition-transform duration-base ease-standard group-open:rotate-45"
+                  aria-hidden="true"
+                >
+                  +
+                </span>
+              </summary>
+              <p class="mt-3 max-w-content text-base leading-relaxed text-text-secondary text-pretty">
+                {item.a}
+              </p>
+            </details>
+          ))
+        }
+      </div>
+
+      <p class="mt-12">
+        <a href="/" class="text-primary font-bold underline">&larr; Back to home</a>
+      </p>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
