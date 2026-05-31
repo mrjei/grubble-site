@@ -1,0 +1,22 @@
+{
+  "brand": {
+    "nameFormal": "Grubble Eats",
+    "nameCasual": "Grubble",
+    "tagline": "Decide what to eat, together.",
+    "parent": "Tenvaro"
+  },
+  "urls": {
+    "site": "https://grubbleeats.com",
+    "appDemo": "https://app.grubbleeats.com"
+  },
+  "contact": {
+    "email": "hello@grubbleeats.com"
+  },
+  "seo": {
+    "defaultOgImage": "https://grubbleeats.com/og-image.png",
+    "description": "Grubble Eats helps groups decide where to eat. Swipe together, match in real time, and let Grubble's AI break the tie — built for groups, not solo discovery."
+  },
+  "waitlist": {
+    "endpoint": "/api/waitlist"
+  }
+}

@@ -1,0 +1,119 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Footer from '../components/Footer.astro';
+import config from '../data/config.json';
+
+const lastUpdated = 'May 31, 2026';
+---
+
+<BaseLayout
+  title="Terms of Service — Grubble Eats"
+  description="The terms governing your use of the Grubble Eats marketing website and waitlist."
+>
+  <header class="px-6 py-6 border-b border-border-subtle">
+    <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
+      <BrandMark variant="squircle" size={36} title="Grubble Eats" class="rounded-md" />
+      <span class="font-display font-extrabold text-lg">Grubble Eats</span>
+    </a>
+  </header>
+
+  <main class="px-6 py-16">
+    <article class="mx-auto max-w-content">
+      <h1 class="text-4xl font-extrabold tracking-tightest">Terms of Service</h1>
+      <p class="mt-3 text-sm text-text-tertiary">Last updated: {lastUpdated}</p>
+
+      <div class="mt-10 space-y-8 text-base leading-relaxed text-text-secondary [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-extrabold [&_h2]:tracking-tightest [&_h2]:text-text-primary [&_h2]:mb-3 [&_a]:text-primary [&_a]:underline">
+        <section>
+          <p>
+            These Terms of Service ("Terms") govern your use of the Grubble Eats
+            marketing website at grubbleeats.com (the "Site") and the launch
+            waitlist offered on it. By using the Site or joining the waitlist,
+            you agree to these Terms. If you do not agree, please don't use the
+            Site.
+          </p>
+        </section>
+
+        <section>
+          <h2>The Site</h2>
+          <p>
+            The Site is an informational marketing page for the forthcoming
+            Grubble Eats mobile app and a way to join our launch waitlist. The
+            app itself is not yet generally available, and these Terms cover the
+            Site only — the app will have its own terms when it launches.
+          </p>
+        </section>
+
+        <section>
+          <h2>Waitlist</h2>
+          <p>
+            Joining the waitlist means we may email you product updates about
+            Grubble Eats. Joining does not guarantee access to the app, a demo,
+            or any particular feature, pricing, or launch date. You can leave the
+            waitlist at any time via the unsubscribe link in any email.
+          </p>
+        </section>
+
+        <section>
+          <h2>Demo access</h2>
+          <p>
+            Any demo of the Grubble Eats app linked from this Site is provided by
+            invitation only and may require authentication. Access is at our
+            discretion and may be limited, changed, or withdrawn at any time.
+          </p>
+        </section>
+
+        <section>
+          <h2>Acceptable use</h2>
+          <p>
+            You agree not to misuse the Site — including attempting to disrupt it,
+            submit fraudulent or automated waitlist entries, or access it in
+            violation of applicable law.
+          </p>
+        </section>
+
+        <section>
+          <h2>Intellectual property</h2>
+          <p>
+            The Grubble Eats name, the Fork-G mark, logos, copy, and design are
+            owned by Grubble Eats and its parent, Tenvaro. You may not use them
+            without our prior written permission.
+          </p>
+        </section>
+
+        <section>
+          <h2>Disclaimer & limitation of liability</h2>
+          <p>
+            The Site is provided "as is," without warranties of any kind. To the
+            fullest extent permitted by law, we are not liable for any indirect,
+            incidental, or consequential damages arising from your use of the
+            Site.
+          </p>
+        </section>
+
+        <section>
+          <h2>Changes</h2>
+          <p>
+            We may update these Terms as the product evolves. Material changes
+            will be reflected by the "last updated" date above. Continued use of
+            the Site after changes means you accept the updated Terms.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Questions about these Terms? Email
+            <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>.
+          </p>
+        </section>
+      </div>
+
+      <p class="mt-12">
+        <a href="/" class="text-primary font-bold underline">&larr; Back to home</a>
+      </p>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Button from '../components/Button.astro';
+---
+
+<BaseLayout
+  title="Page not found — Grubble Eats"
+  description="That page couldn't be found. Head back to the Grubble Eats home page."
+>
+  <main class="flex min-h-screen flex-col items-center justify-center px-6 py-20 text-center">
+    <BrandMark variant="squircle" size={80} title="Grubble Eats" class="mb-8 rounded-2xl shadow-lg" />
+    <p class="font-display text-6xl font-extrabold tracking-tightest text-primary">404</p>
+    <h1 class="mt-4 text-2xl sm:text-3xl font-extrabold tracking-tightest text-balance">
+      Hmm, we couldn't find that.
+    </h1>
+    <p class="mt-3 max-w-md text-base text-text-secondary">
+      The page you're looking for doesn't exist or has moved.
+    </p>
+    <div class="mt-8">
+      <Button href="/">Back to home &rarr;</Button>
+    </div>
+  </main>
+</BaseLayout>

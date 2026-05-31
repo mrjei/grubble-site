@@ -1,0 +1,70 @@
+---
+/**
+ * What It Does — 3-pane product pitch (Swipe · Match · Ask) with a one-line
+ * competitive framing above it. Illustrations are abstract inline SVGs in the
+ * brand palette (no literal restaurant renders, per the build plan).
+ */
+const panes = [
+  {
+    word: 'Swipe.',
+    body: 'Flick through a deck of nearby spots — right to like, left to pass, up to Super Grub the one you really want. No menus to scroll, no lists to compare.',
+    illustration: 'cards',
+  },
+  {
+    word: 'Match.',
+    body: "Start a group session and everyone swipes the same stack on their own phone. The moment you agree, Grubble calls it — real-time multiplayer decisions with friends.",
+    illustration: 'match',
+  },
+  {
+    word: 'Ask.',
+    body: "Tell Grubble what you're craving — \u201chungover, walking distance\u201d — and the AI builds you a tailored stack with reasoning. No other food app does this.",
+    illustration: 'ask',
+  },
+];
+---
+
+<section class="px-6 py-20 sm:py-28">
+  <div class="mx-auto max-w-5xl">
+    <!-- Competitive framing — doesn't name competitors; the wedge is implicit. -->
+    <p class="mx-auto max-w-2xl text-center text-xl sm:text-2xl font-display font-bold text-balance">
+      Existing apps surface restaurants. <span class="text-primary"
+        >Grubble decides them — together.</span
+      >
+    </p>
+
+    <div class="mt-16 grid gap-12 sm:grid-cols-3 sm:gap-8">
+      {
+        panes.map((pane) => (
+          <article class="flex flex-col items-center text-center sm:items-start sm:text-left">
+            <div class="mb-6 flex h-20 w-20 items-center justify-center rounded-xl bg-primary-subtle text-primary">
+              {pane.illustration === 'cards' && (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                  <rect x="10" y="13" width="22" height="28" rx="3" fill="currentColor" opacity="0.25" transform="rotate(-10 21 27)" />
+                  <rect x="12" y="10" width="22" height="28" rx="3" fill="currentColor" opacity="0.45" transform="rotate(-2 23 24)" />
+                  <rect x="13" y="7" width="22" height="28" rx="3" fill="currentColor" />
+                </svg>
+              )}
+              {pane.illustration === 'match' && (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                  <circle cx="17" cy="20" r="11" fill="currentColor" opacity="0.4" />
+                  <circle cx="27" cy="20" r="11" fill="currentColor" />
+                  <path d="M22 18.5l2.5 2.5 4.5-5" stroke="var(--gr-cream)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+                </svg>
+              )}
+              {pane.illustration === 'ask' && (
+                <svg width="44" height="44" viewBox="0 0 44 44" fill="none" aria-hidden="true">
+                  <path d="M9 12a4 4 0 014-4h18a4 4 0 014 4v12a4 4 0 01-4 4H20l-7 6v-6h-0a4 4 0 01-4-4V12z" fill="currentColor" />
+                  <path d="M26 13l1.6 4.4L32 19l-4.4 1.6L26 25l-1.6-4.4L20 19l4.4-1.6L26 13z" fill="var(--gr-cream)" />
+                </svg>
+              )}
+            </div>
+            <h3 class="text-3xl font-display font-extrabold tracking-tightest text-primary">
+              {pane.word}
+            </h3>
+            <p class="mt-3 text-base text-text-secondary text-pretty">{pane.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

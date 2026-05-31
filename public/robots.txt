@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://grubbleeats.com/sitemap-index.xml

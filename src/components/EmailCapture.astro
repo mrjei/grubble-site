@@ -1,0 +1,106 @@
+---
+import config from '../data/config.json';
+---
+
+<section id="waitlist" class="px-6 py-20 sm:py-28 bg-primary text-text-on-brand">
+  <div class="mx-auto max-w-xl text-center">
+    <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tightest text-cream">
+      Get notified when Grubble launches
+    </h2>
+    <p class="mt-4 text-lg text-cream/80">
+      Be first in line when Grubble Eats hits the App Store and Google Play.
+      We won't spam. We won't sell your email.
+    </p>
+
+    <form
+      id="waitlist-form"
+      class="mx-auto mt-8 flex w-full max-w-md flex-col gap-3 sm:flex-row"
+      method="POST"
+      action={config.waitlist.endpoint}
+      novalidate
+    >
+      <label for="waitlist-email" class="sr-only">Email address</label>
+      <input
+        id="waitlist-email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="you@example.com"
+        class="flex-1 rounded-sm border border-transparent bg-cream px-4 py-3 text-base text-text-primary placeholder:text-text-tertiary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-primary"
+      />
+
+      <!-- Honeypot: bots fill this; humans never see it. Must stay empty. -->
+      <input
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        class="absolute -left-[9999px] h-0 w-0 opacity-0"
+      />
+
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center rounded-sm bg-cream px-6 py-3 font-body font-bold text-primary transition-colors duration-base ease-standard hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cream focus-visible:ring-offset-2 focus-visible:ring-offset-primary disabled:opacity-60 disabled:cursor-not-allowed"
+      >
+        <span data-label>Notify me</span>
+      </button>
+    </form>
+
+    <p id="waitlist-status" role="status" aria-live="polite" class="mt-4 min-h-[1.5rem] text-sm text-cream/90"></p>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('waitlist-form') as HTMLFormElement | null;
+  const status = document.getElementById('waitlist-status');
+  const emailInput = document.getElementById('waitlist-email') as HTMLInputElement | null;
+
+  if (form && status && emailInput) {
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    const label = button.querySelector('[data-label]') as HTMLElement;
+    const defaultLabel = label.textContent;
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      status.textContent = '';
+      status.classList.remove('text-cream');
+
+      const email = emailInput.value.trim();
+      const website = (form.elements.namedItem('website') as HTMLInputElement)?.value ?? '';
+
+      if (!email || !emailInput.checkValidity()) {
+        status.textContent = 'Please enter a valid email address.';
+        emailInput.focus();
+        return;
+      }
+
+      button.disabled = true;
+      label.textContent = 'Sending…';
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, website }),
+        });
+
+        if (res.ok) {
+          form.reset();
+          status.textContent = "You're on the list — we'll be in touch.";
+        } else {
+          const data = await res.json().catch(() => null);
+          status.textContent =
+            (data && typeof data.message === 'string' && data.message) ||
+            'Something went wrong. Please try again.';
+        }
+      } catch {
+        status.textContent = 'Network error. Please check your connection and try again.';
+      } finally {
+        button.disabled = false;
+        label.textContent = defaultLabel;
+      }
+    });
+  }
+</script>

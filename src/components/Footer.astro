@@ -1,0 +1,32 @@
+---
+import BrandMark from './BrandMark.astro';
+import config from '../data/config.json';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-border-subtle px-6 py-12">
+  <div class="mx-auto flex max-w-5xl flex-col items-center gap-6 sm:flex-row sm:justify-between">
+    <div class="flex items-center gap-3">
+      <BrandMark variant="squircle" size={36} title="Grubble Eats" class="rounded-md" />
+      <span class="text-sm text-text-secondary">
+        &copy; {year} Grubble Eats &middot; {config.brand.parent}
+      </span>
+    </div>
+
+    <nav aria-label="Footer" class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
+      <a href="/privacy" class="text-text-secondary transition-colors duration-base hover:text-text-primary">
+        Privacy Policy
+      </a>
+      <a href="/terms" class="text-text-secondary transition-colors duration-base hover:text-text-primary">
+        Terms of Service
+      </a>
+      <a
+        href={`mailto:${config.contact.email}`}
+        class="text-text-secondary transition-colors duration-base hover:text-text-primary"
+      >
+        {config.contact.email}
+      </a>
+    </nav>
+  </div>
+</footer>

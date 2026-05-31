@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BrandMark from '../components/BrandMark.astro';
+import Footer from '../components/Footer.astro';
+import config from '../data/config.json';
+
+const lastUpdated = 'May 31, 2026';
+---
+
+<BaseLayout
+  title="Privacy Policy — Grubble Eats"
+  description="How Grubble Eats collects, uses, and protects the information you share through our waitlist."
+>
+  <header class="px-6 py-6 border-b border-border-subtle">
+    <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
+      <BrandMark variant="squircle" size={36} title="Grubble Eats" class="rounded-md" />
+      <span class="font-display font-extrabold text-lg">Grubble Eats</span>
+    </a>
+  </header>
+
+  <main class="px-6 py-16">
+    <article class="mx-auto max-w-content">
+      <h1 class="text-4xl font-extrabold tracking-tightest">Privacy Policy</h1>
+      <p class="mt-3 text-sm text-text-tertiary">Last updated: {lastUpdated}</p>
+
+      <div class="mt-10 space-y-8 text-base leading-relaxed text-text-secondary [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-extrabold [&_h2]:tracking-tightest [&_h2]:text-text-primary [&_h2]:mb-3 [&_a]:text-primary [&_a]:underline">
+        <section>
+          <p>
+            Grubble Eats ("Grubble," "we," "us") respects your privacy. This
+            policy explains what we collect when you join our waitlist, how we
+            use it, and the choices you have. It covers this marketing website
+            (grubbleeats.com). The Grubble Eats mobile app will have its own
+            in-app privacy disclosures when it launches.
+          </p>
+        </section>
+
+        <section>
+          <h2>What we collect</h2>
+          <p>
+            The only personal information we collect through this website is the
+            <strong>email address</strong> you voluntarily submit to our launch
+            waitlist. We do not ask for your name, location, phone number, or
+            any other personal detail to join the list.
+          </p>
+        </section>
+
+        <section>
+          <h2>How we use it</h2>
+          <p>
+            We use your email address solely to send you product update
+            communications about Grubble Eats — for example, letting you know
+            when the app launches or when early access is available. We do not
+            use it for unrelated marketing, and we will never sell, rent, or
+            trade your email address to third parties.
+          </p>
+        </section>
+
+        <section>
+          <h2>Email service & unsubscribing</h2>
+          <p>
+            Waitlist emails are stored and sent through
+            <a href="https://www.brevo.com/" rel="noopener noreferrer">Brevo</a>,
+            our email service provider, which processes the data on our behalf.
+            We use compliant double opt-in, and every email we send includes a
+            one-click unsubscribe link. You can opt out at any time, and Brevo
+            handles the unsubscribe immediately.
+          </p>
+        </section>
+
+        <section>
+          <h2>Analytics & cookies</h2>
+          <p>
+            We use <strong>Cloudflare Web Analytics</strong>, a privacy-first
+            analytics tool that measures aggregate traffic <em>without</em>
+            setting cookies, fingerprinting your device, or tracking you across
+            other sites. We use no third-party advertising or tracking beyond
+            this. Because we don't use tracking cookies, this site does not need
+            a cookie consent banner.
+          </p>
+        </section>
+
+        <section>
+          <h2>Data retention & your rights (GDPR / CCPA)</h2>
+          <p>
+            We practice data minimization — we keep only your email address, and
+            only for as long as you remain on the waitlist. You have the right to
+            access, correct, or delete your data at any time. To unsubscribe, use
+            the link in any email; to request deletion of your data, email us at
+            <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>.
+            We do not sell personal information as defined under the CCPA.
+          </p>
+        </section>
+
+        <section>
+          <h2>Children</h2>
+          <p>
+            This website and waitlist are not directed to children under 13, and
+            we do not knowingly collect information from them.
+          </p>
+        </section>
+
+        <section>
+          <h2>Changes to this policy</h2>
+          <p>
+            We may update this policy as Grubble Eats evolves. Material changes
+            will be reflected by the "last updated" date above.
+          </p>
+        </section>
+
+        <section>
+          <h2>Contact</h2>
+          <p>
+            Questions about this policy? Email
+            <a href={`mailto:${config.contact.email}`}>{config.contact.email}</a>.
+          </p>
+        </section>
+      </div>
+
+      <p class="mt-12">
+        <a href="/" class="text-primary font-bold underline">&larr; Back to home</a>
+      </p>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>

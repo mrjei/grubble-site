@@ -1,0 +1,59 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import SEO from '../components/SEO.astro';
+import config from '../data/config.json';
+
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  canonical?: string;
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description = config.seo.description,
+  image,
+  canonical,
+  structuredData,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#1F5B3F" />
+
+    <!-- Favicon + touch icon (generated from the locked Fork-G mark) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Fonts: Cabinet Grotesk (display) + Satoshi (body) via Fontshare -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,700,500&f[]=satoshi@300,400,500,700,900&display=swap"
+    />
+
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+      structuredData={structuredData}
+    />
+
+    <!-- Cloudflare Web Analytics: replace with real beacon URL -->
+    <!-- <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "REPLACE_WITH_REAL_BEACON_TOKEN"}'></script> -->
+  </head>
+  <body class="min-h-screen bg-bg text-text-primary font-body antialiased">
+    <slot />
+  </body>
+</html>

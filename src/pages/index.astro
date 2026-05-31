@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import WhatItDoes from '../components/WhatItDoes.astro';
+import EmailCapture from '../components/EmailCapture.astro';
+import Footer from '../components/Footer.astro';
+import config from '../data/config.json';
+
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Grubble Eats',
+    url: config.urls.site,
+    logo: `${config.urls.site}/apple-touch-icon.png`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Grubble Eats',
+    url: config.urls.site,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'Grubble Eats',
+    applicationCategory: 'FoodAndDrinkApplication',
+    operatingSystem: 'iOS, Android',
+    description:
+      "Grubble Eats helps groups decide where to eat \u2014 swipe together, match in real time, and let Grubble's AI break the tie.",
+    url: config.urls.site,
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  },
+];
+---
+
+<BaseLayout
+  title="Grubble Eats — Decide what to eat, together."
+  description={config.seo.description}
+  structuredData={structuredData}
+>
+  <main>
+    <Hero />
+    <WhatItDoes />
+    <EmailCapture />
+  </main>
+  <Footer />
+</BaseLayout>

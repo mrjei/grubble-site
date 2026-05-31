@@ -1,0 +1,79 @@
+---
+/*
+ * ════════════════════════════════════════════════════════════════════════
+ *  HERO HEADLINE — DRAFT VARIANTS (James: pick one, then delete the rest)
+ * ════════════════════════════════════════════════════════════════════════
+ *
+ *  All four center on the wedge: every other food app surfaces restaurants for
+ *  SOLO discovery (DoorDash, Uber Eats, Yelp, Grubhub). Grubble Eats decides
+ *  FOR THE GROUP. The headline must land that in the first 90 seconds.
+ *
+ *  Brand-naming lock (2026-05-28): the hero headline uses the FORMAL name
+ *  "Grubble Eats". Body copy after first mention may use casual "Grubble".
+ *
+ *  ── Variant A (ACTIVE) ──────────────────────────────────────────────────
+ *    "Stop arguing about dinner. Grubble Eats decides for your group."
+ *    Why it lands: names the universal pain (the dinner argument) in 4 words,
+ *    then resolves it with the wedge. Concrete, slightly playful, founder-
+ *    confident. Strongest "I feel this" hook for a cold investor read.
+ *
+ *  ── Variant B ───────────────────────────────────────────────────────────
+ *    "Every food app helps you decide alone. Grubble Eats is built for the group."
+ *    Why it lands: makes the competitive contrast explicit without naming
+ *    names — the sharpest investor-legible framing of the category gap. A
+ *    touch longer; reads more like a thesis than a hook.
+ *
+ *  ── Variant C ───────────────────────────────────────────────────────────
+ *    "Swipe together. Match together. Eat together."
+ *    Why it lands: rhythmic, product-mechanic-forward, instantly memorable;
+ *    mirrors the 3-pane below. Trade-off: doesn't contain "Grubble Eats" or
+ *    state the wedge outright — pair it with a prominent wordmark + a wedge-
+ *    heavy subhead if chosen (and add the formal name somewhere above the fold).
+ *
+ *  ── Variant D ───────────────────────────────────────────────────────────
+ *    "The group chat can't decide where to eat. Grubble Eats can."
+ *    Why it lands: names the real-world failure mode (the endless group text)
+ *    everyone recognizes; conversational and quotable. Slightly narrower
+ *    (assumes the group-text frame) but very relatable.
+ * ════════════════════════════════════════════════════════════════════════
+ */
+import BrandMark from './BrandMark.astro';
+import Button from './Button.astro';
+import config from '../data/config.json';
+---
+
+<section class="relative overflow-hidden px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+  <div class="mx-auto flex max-w-3xl flex-col items-center text-center">
+    <BrandMark variant="squircle" size={88} title="Grubble Eats" class="mb-8 shadow-lg rounded-2xl" />
+
+    <!-- ACTIVE HEADLINE: Variant A (placeholder pick — James to confirm) -->
+    <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tightest text-balance">
+      Stop arguing about dinner.<br />
+      <span class="text-primary">Grubble Eats</span> decides for your group.
+    </h1>
+
+    <!-- Subhead — ≤ 25 words: swipe + AI + group session positioning. -->
+    <p class="mt-6 max-w-xl text-lg sm:text-xl text-text-secondary text-pretty">
+      Swipe through nearby spots together, match in real time, and let Grubble's
+      AI break the tie. The food-decision app built for groups, not solo
+      scrolling.
+    </p>
+
+    <div class="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:gap-5">
+      <div class="flex flex-col items-center gap-1.5">
+        <Button href={config.urls.appDemo} target="_self" size="default">
+          Try the demo
+        </Button>
+        <span class="text-sm text-text-tertiary">Demo access by invite</span>
+      </div>
+
+      <Button href="#waitlist" variant="secondary" size="default">
+        Get notified
+      </Button>
+    </div>
+
+    <p class="mt-12 text-sm font-medium uppercase tracking-wide text-text-tertiary">
+      Coming soon to iOS and Android
+    </p>
+  </div>
+</section>

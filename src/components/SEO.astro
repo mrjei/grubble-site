@@ -1,0 +1,47 @@
+---
+import config from '../data/config.json';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  structuredData?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title,
+  description,
+  image = config.seo.defaultOgImage,
+  canonical = new URL(Astro.url.pathname, config.urls.site).href,
+  type = 'website',
+  structuredData,
+} = Astro.props;
+
+const jsonLd = structuredData
+  ? Array.isArray(structuredData)
+    ? structuredData
+    : [structuredData]
+  : [];
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+
+<meta property="og:title" content="Grubble Eats" />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:url" content={canonical} />
+<meta property="og:type" content={type} />
+<meta property="og:site_name" content="Grubble Eats" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Grubble Eats" />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+
+{jsonLd.map((data) => (
+  <script type="application/ld+json" set:html={JSON.stringify(data)} />
+))}

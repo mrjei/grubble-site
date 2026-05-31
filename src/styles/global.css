@@ -1,0 +1,58 @@
+/* Grubble Eats — global styles. Tokens load first (imported in BaseLayout),
+ * then Tailwind layers. Fonts are loaded via a Fontshare <link> in the layout
+ * head (with preconnect) rather than an @import chain here. */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--gr-bg);
+    color: var(--gr-text-primary);
+    font-family: var(--gr-font-body);
+    font-weight: var(--gr-weight-regular);
+    line-height: var(--gr-leading-normal);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--gr-font-display);
+    font-weight: var(--gr-weight-extrabold);
+    line-height: var(--gr-leading-tight);
+    letter-spacing: var(--gr-tracking-tight);
+    color: var(--gr-text-primary);
+  }
+
+  /* Visible focus for keyboard users only. */
+  :focus-visible {
+    outline: 2px solid var(--gr-focus-ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--gr-primary);
+    color: var(--gr-text-on-brand);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

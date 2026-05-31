@@ -1,0 +1,47 @@
+---
+interface Props {
+  variant?: 'primary' | 'secondary' | 'ghost';
+  size?: 'default' | 'small';
+  href?: string;
+  type?: 'button' | 'submit' | 'reset';
+  target?: '_self' | '_blank';
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'default',
+  href,
+  type = 'button',
+  target,
+  class: className,
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+
+const baseClasses =
+  'inline-flex items-center justify-center gap-2 font-body font-bold rounded-sm transition-colors duration-base ease-standard focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg disabled:opacity-50 disabled:cursor-not-allowed';
+
+const variantClasses = {
+  // Brand green CTA → near-black content (--gr-on-primary), the locked pairing.
+  primary: 'bg-primary text-on-primary hover:bg-primary-hover',
+  secondary:
+    'bg-surface text-text-primary border border-border-default hover:border-text-primary',
+  ghost: 'text-text-primary hover:bg-surface-muted',
+};
+
+const sizeClasses = {
+  default: 'px-6 py-3 text-base',
+  small: 'px-4 py-2 text-sm',
+};
+---
+
+<Tag
+  class:list={[baseClasses, variantClasses[variant], sizeClasses[size], className]}
+  href={href}
+  target={href ? target : undefined}
+  rel={href && target === '_blank' ? 'noopener noreferrer' : undefined}
+  type={href ? undefined : type}
+>
+  <slot />
+</Tag>
