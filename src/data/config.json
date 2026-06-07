@@ -12,10 +12,12 @@
   },
   "urls": {
     "site": "https://grubbleeats.com",
-    "appDemo": "https://app.grubbleeats.com"
+    "appDemo": "https://app.grubbleeats.com",
+    "parent": "https://tenvaro.ai"
   },
   "contact": {
-    "email": "hello@grubbleeats.com"
+    "email": "hello@grubbleeats.com",
+    "support": "support@grubbleeats.com"
   },
   "seo": {
     "defaultTitle": "Grubble Eats — The food decision app for groups",

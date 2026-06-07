@@ -5,11 +5,12 @@ import config from '../data/config.json';
 <section id="waitlist" class="px-6 py-20 sm:py-28 bg-primary text-text-on-brand">
   <div class="mx-auto max-w-xl text-center">
     <h2 class="text-3xl sm:text-4xl font-display font-extrabold tracking-tightest text-cream">
-      Get notified when Grubble launches
+      Get early access — and watch it grow
     </h2>
     <p class="mt-4 text-lg text-cream/80">
-      Be first in line when Grubble Eats hits the App Store and Google Play.
-      We won't spam. We won't sell your email.
+      Join the list for early access when Grubble Eats hits iOS and Android, plus
+      the occasional build-in-public update on what we're shipping. No spam, no
+      selling your email — just the good stuff.
     </p>
 
     <form
@@ -88,7 +89,8 @@ import config from '../data/config.json';
 
         if (res.ok) {
           form.reset();
-          status.textContent = "You're on the list — we'll be in touch.";
+          status.textContent =
+            "You're in. We'll reach out with early access the moment it's ready — and the occasional update along the way. Thanks for backing Grubble early.";
         } else {
           const data = await res.json().catch(() => null);
           status.textContent =

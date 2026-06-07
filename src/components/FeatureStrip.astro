@@ -1,0 +1,89 @@
+---
+/**
+ * FeatureStrip — concrete, demo-grade capabilities that are REAL today, shown
+ * directly below the hero so investors tapping in from the live demo get
+ * immediate context. Every claim here maps to shipped functionality in the
+ * app.grubbleeats.com PWA (Phase 11I + 11K): real Google Places data, real
+ * Anthropic Claude on the AI surfaces, and Cloudflare-synced group sessions.
+ *
+ * Honest-and-specific over marketing-y-and-vague — no claims that aren't real.
+ */
+import config from '../data/config.json';
+
+const features = [
+  {
+    title: 'Live restaurant data',
+    body: 'Every card is a real, open restaurant pulled from Google Places — photos, hours, ratings, the works. Not a curated editorial list. Port St. Lucie alone has 50+ spots in the deck.',
+    icon: 'map',
+  },
+  {
+    title: 'AI that explains itself',
+    body: 'Claude reads the room and tells you why a place won — not just what won. Powered by Anthropic Claude across card blurbs, the recommender, vibe previews, and the group tiebreaker.',
+    icon: 'spark',
+  },
+  {
+    title: 'Group decisions in real time',
+    body: 'Start a session and 2–6 friends swipe the same stack on their own phones, synced live over Cloudflare. Grubble calls it the moment the room agrees.',
+    icon: 'people',
+  },
+  {
+    title: 'Built solo by a founder',
+    body: 'Made by James Blanchard, founder of Tenvaro — building AI infrastructure by day at HCA Healthcare / Parallon, and Grubble nights and weekends.',
+    icon: 'flag',
+  },
+];
+---
+
+<section class="px-6 pb-4 pt-2 sm:pb-8">
+  <div class="mx-auto max-w-5xl">
+    <p class="text-center text-sm font-medium uppercase tracking-wide text-text-tertiary">
+      What's real today
+    </p>
+    <h2 class="mx-auto mt-3 max-w-2xl text-center text-2xl sm:text-3xl font-display font-extrabold tracking-tightest text-balance">
+      A working app, not a mockup.
+      <a href={config.urls.appDemo} class="text-primary underline decoration-2 underline-offset-4">Tap the demo</a>
+      and see for yourself.
+    </h2>
+
+    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        features.map((feature) => (
+          <article class="flex flex-col rounded-lg border border-border-subtle bg-bg-raised p-6 shadow-xs transition-shadow duration-base ease-standard hover:shadow-sm">
+            <div class="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-primary-subtle text-primary">
+              {feature.icon === 'map' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 21s7-5.686 7-11a7 7 0 10-14 0c0 5.314 7 11 7 11z" stroke="currentColor" stroke-width="2" stroke-linejoin="round" />
+                  <circle cx="12" cy="10" r="2.5" fill="currentColor" />
+                </svg>
+              )}
+              {feature.icon === 'spark' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M12 3l2.2 6.3L20.5 11l-6.3 2.2L12 19.5l-2.2-6.3L3.5 11l6.3-1.7L12 3z" fill="currentColor" />
+                </svg>
+              )}
+              {feature.icon === 'people' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <circle cx="9" cy="8" r="3.2" fill="currentColor" opacity="0.5" />
+                  <circle cx="16" cy="9" r="3.2" fill="currentColor" />
+                  <path d="M3.5 19a5.5 5.5 0 0111 0M12 19a5.5 5.5 0 018.5-4.6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none" />
+                </svg>
+              )}
+              {feature.icon === 'flag' && (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path d="M6 21V4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  <path d="M6 4.5h11l-2.2 3.5L17 11.5H6z" fill="currentColor" />
+                </svg>
+              )}
+            </div>
+            <h3 class="font-display text-lg font-extrabold tracking-tightest text-text-primary">
+              {feature.title}
+            </h3>
+            <p class="mt-2 text-sm leading-relaxed text-text-secondary text-pretty">
+              {feature.body}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

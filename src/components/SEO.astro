@@ -12,16 +12,23 @@ import config from '../data/config.json';
 interface Props {
   title?: string;
   description?: string;
+  /** Per-page Open Graph image override (absolute path or full URL). */
+  ogImage?: string;
 }
 
 const {
   title = config.seo.defaultTitle,
   description = config.business.description,
+  ogImage: ogImageProp = config.seo.defaultOgImage,
 } = Astro.props;
 
 const siteUrl = config.urls.site;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
-const ogImage = new URL(config.seo.defaultOgImage, siteUrl).href;
+// TODO(James): replace /og-image.png (brand card) with a recent high-res
+// screenshot of the live PWA at app.grubbleeats.com once one is captured, then
+// drop it in public/ and point config.seo.defaultOgImage at it. Brand card
+// stands in for now — it's a real card, not a broken placeholder.
+const ogImage = new URL(ogImageProp, siteUrl).href;
 
 const structuredData = [
   {
@@ -30,7 +37,12 @@ const structuredData = [
     name: config.business.name,
     url: siteUrl,
     logo: new URL('/apple-touch-icon.png', siteUrl).href,
-    sameAs: [],
+    parentOrganization: {
+      '@type': 'Organization',
+      name: config.brand.parent,
+      url: config.urls.parent,
+    },
+    sameAs: [config.urls.parent],
   },
   {
     '@context': 'https://schema.org',
@@ -44,12 +56,18 @@ const structuredData = [
     name: config.business.name,
     applicationCategory: 'FoodAndDrinkApplication',
     operatingSystem: 'iOS, Android, Web',
+    url: config.urls.appDemo,
     offers: {
       '@type': 'Offer',
       price: '0',
       priceCurrency: 'USD',
     },
     description: config.business.description,
+    publisher: {
+      '@type': 'Organization',
+      name: config.brand.parent,
+      url: config.urls.parent,
+    },
   },
 ];
 ---
@@ -65,12 +83,16 @@ const structuredData = [
 <meta property="og:url" content={canonical} />
 <meta property="og:site_name" content={config.business.name} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${config.business.name} — ${config.business.tagline}`} />
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={`${config.business.name} — ${config.business.tagline}`} />
 
 <!-- Application name (browser bookmarks, PWA hints) -->
 <meta name="application-name" content={config.business.name} />

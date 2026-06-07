@@ -2,11 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BrandMark from '../components/BrandMark.astro';
 import Footer from '../components/Footer.astro';
+import config from '../data/config.json';
 ---
 
 <BaseLayout
   title="About — Grubble Eats"
-  description="Why we built Grubble Eats, how we're different, who's behind it, and where we're headed. Built by Tenvaro."
+  description="Group food decisions take twenty minutes and end in compromise. Grubble Eats fixes that with swipe-based, AI-enhanced, group-aware decisions — real Google Places data and real Anthropic Claude, working today."
 >
   <header class="px-6 py-6 border-b border-border-subtle">
     <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
@@ -24,44 +25,66 @@ import Footer from '../components/Footer.astro';
 
       <div class="mt-10 space-y-8 text-base leading-relaxed text-text-secondary [&_h2]:text-2xl [&_h2]:font-display [&_h2]:font-extrabold [&_h2]:tracking-tightest [&_h2]:text-text-primary [&_h2]:mb-3 [&_a]:text-primary [&_a]:underline">
         <section>
-          <h2>Why we built it</h2>
+          <h2>The problem</h2>
           <p>
             Deciding where to eat with friends is a small, daily, universal kind
-            of misery — the group chat that loops for twenty minutes and lands
-            nowhere. Existing food apps make it worse: they're designed for one
-            person browsing a catalog alone, not a group trying to agree. We're
-            flipping that primitive.
+            of misery. The group chat loops for twenty minutes, three people say
+            "I'm easy," nobody actually is, and you land on the same place you
+            always go — or somewhere nobody's excited about. Existing food apps
+            make it worse: they're built for one person browsing a catalog alone,
+            not a group trying to agree.
           </p>
         </section>
 
         <section>
-          <h2>How we're different</h2>
+          <h2>The approach</h2>
           <p>
-            Grubble is group-first, not group-as-an-afterthought. Friends join a
-            live session and swipe the same stack in real time, and the AI
-            reasons about taste consensus — what the whole room will agree on —
-            not just one person's preferences. The decision is the product.
+            Grubble is group-first. It's swipe-based — flick through a deck of
+            real nearby spots instead of scrolling menus. It's AI-enhanced —
+            Claude reasons about what the whole room will agree on and explains
+            why a place won. And it's group-aware — friends join a live session
+            and swipe the same stack in real time, with match rules that scale
+            from solo to a table of six. The decision is the product.
           </p>
         </section>
 
         <section>
-          <h2>Who's behind it</h2>
+          <h2>What's real today</h2>
           <p>
-            Grubble Eats is built by <a href="https://tenvaro.ai" rel="noopener noreferrer">Tenvaro</a>,
+            This isn't a pitch deck mockup. The
+            <a href={config.urls.appDemo} rel="noopener noreferrer">live demo</a>
+            runs on real data: every card is an open restaurant pulled from
+            Google Places, with real photos, hours, and ratings. The AI surfaces
+            — card blurbs, the recommender, vibe previews, and the group
+            tiebreaker — run on real Anthropic Claude. Group sessions sync
+            between phones over a Cloudflare backend. Port St. Lucie alone has
+            50+ spots live in the deck.
+          </p>
+          <p class="mt-4">
+            <a href={config.urls.appDemo} rel="noopener noreferrer" class="font-bold">Try the demo at app.grubbleeats.com &rarr;</a>
+          </p>
+        </section>
+
+        <section>
+          <h2>Built by Tenvaro</h2>
+          <p>
+            Grubble Eats is built by
+            <a href={config.urls.parent} rel="noopener noreferrer">Tenvaro</a>,
             founded by James Blanchard — an AI-augmented solo developer who ships
             full products end to end. The stack is lean and modern: a Cloudflare
-            backend for sessions and waitlist, Flutter for native and web, and
-            Claude powering the AI surfaces.
+            backend (Workers + D1) for sessions and waitlist, Flutter for native
+            and web from one codebase, and Claude powering the AI surfaces. Lean
+            by design — shipping fast without a big team.
           </p>
         </section>
 
         <section>
-          <h2>Where we're headed</h2>
+          <h2>Contact &amp; press</h2>
           <p>
-            Right now: a public beta on the web. Next: native iOS and Android
-            apps. After that: more cities, more cuisines, and restaurant
-            partnerships that help groups discover places worth agreeing on.
-            Forward-looking — and we'll build it in the open.
+            For press, partnership, or investor questions, reach us at
+            <a href={`mailto:${config.contact.support}`}>{config.contact.support}</a>.
+            More detail for investors and recruiters lives on the
+            <a href="/press">press page</a>.
           </p>
         </section>
       </div>
