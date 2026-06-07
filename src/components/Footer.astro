@@ -1,5 +1,6 @@
 ---
 import BrandMark from './BrandMark.astro';
+import SocialLinks from './SocialLinks.astro';
 import config from '../data/config.json';
 
 const year = new Date().getFullYear();
@@ -13,6 +14,8 @@ const year = new Date().getFullYear();
         &copy; {year} Grubble Eats &middot; {config.brand.parent}
       </span>
     </div>
+
+    <SocialLinks size={20} class="order-last sm:order-none" />
 
     <nav aria-label="Footer" class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
       <a href="/about" class="text-text-secondary transition-colors duration-base hover:text-text-primary">

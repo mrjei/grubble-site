@@ -24,11 +24,12 @@ const {
 
 const siteUrl = config.urls.site;
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
-// TODO(James): replace /og-image.png (brand card) with a recent high-res
-// screenshot of the live PWA at app.grubbleeats.com once one is captured, then
-// drop it in public/ and point config.seo.defaultOgImage at it. Brand card
-// stands in for now — it's a real card, not a broken placeholder.
 const ogImage = new URL(ogImageProp, siteUrl).href;
+
+// Social profiles that represent the Grubble Eats brand — drives sameAs for
+// rich results / brand-panel building. Tenvaro's own socials stay separate
+// (different brand identity); the parent link is expressed via parentOrganization.
+const socialUrls = config.social.map((s) => s.url);
 
 const structuredData = [
   {
@@ -37,12 +38,13 @@ const structuredData = [
     name: config.business.name,
     url: siteUrl,
     logo: new URL('/apple-touch-icon.png', siteUrl).href,
+    email: config.contact.support,
     parentOrganization: {
       '@type': 'Organization',
       name: config.brand.parent,
       url: config.urls.parent,
     },
-    sameAs: [config.urls.parent],
+    sameAs: socialUrls,
   },
   {
     '@context': 'https://schema.org',

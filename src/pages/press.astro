@@ -13,17 +13,25 @@ const stats = [
   { value: '4', label: 'AI surfaces running on real Anthropic Claude' },
 ];
 
-// Screenshots: pull real high-res captures into public/screenshots/ before press
-// outreach. These are intentional placeholders until then — see TODO below.
-// TODO(James): drop real PWA screenshots into public/screenshots/ and the grid
-// will render them. Suggested set: deck card, group session, AI recommender,
-// tiebreaker, restaurant detail with vibe preview. Recommended ~1290×2796
-// (iPhone) or similar, PNG.
+// Real high-res captures from the live PWA. Kebab-case copies live alongside the
+// originals in public/screenshots/ (spaces in filenames URL-encode awkwardly).
 const screenshots = [
-  { src: '/screenshots/deck.png', alt: 'Grubble Eats restaurant swipe deck' },
-  { src: '/screenshots/group-session.png', alt: 'Grubble Eats live group session' },
-  { src: '/screenshots/ai-recommender.png', alt: 'Grubble Eats AI recommender' },
-  { src: '/screenshots/restaurant-detail.png', alt: 'Grubble Eats restaurant detail with AI vibe preview' },
+  {
+    src: '/screenshots/card-swipe-deck.png',
+    alt: 'Grubble Eats deck card showing a real restaurant with photo, rating, and AI-generated description.',
+  },
+  {
+    src: '/screenshots/live-sessions-card.png',
+    alt: 'A live multi-person Grubble Eats session — friends swiping the same restaurant stack in real time.',
+  },
+  {
+    src: '/screenshots/ai-recommender.png',
+    alt: 'The Grubble Eats AI recommender turning a craving into a tailored stack with reasoning.',
+  },
+  {
+    src: '/screenshots/restaurant-detail-ai-vibe.png',
+    alt: 'A Grubble Eats restaurant detail screen with an AI vibe preview, reviews, and key info.',
+  },
 ];
 ---
 
@@ -112,20 +120,18 @@ const screenshots = [
             {
               screenshots.map((shot) => (
                 <figure class="overflow-hidden rounded-lg border border-border-subtle bg-surface-muted">
-                  {/* TODO(James): add real captures to public/screenshots/ — placeholders until then. */}
                   <img
                     src={shot.src}
                     alt={shot.alt}
+                    width="300"
+                    height="630"
                     loading="lazy"
-                    class="aspect-[9/19] w-full bg-surface-sunken object-cover"
+                    class="aspect-[9/19] w-full object-cover"
                   />
                 </figure>
               ))
             }
           </div>
-          <p class="mt-3 text-sm text-text-tertiary">
-            Placeholder slots — real captures land in <code class="font-mono">public/screenshots/</code> before press outreach.
-          </p>
         </section>
 
         <section>
@@ -141,11 +147,23 @@ const screenshots = [
         </section>
 
         <section>
-          <h2>Contact</h2>
+          <h2>Contact &amp; follow</h2>
           <p>
             Press, investor, and recruiter inquiries:
             <a href={`mailto:${config.contact.support}`}>{config.contact.support}</a>.
           </p>
+          <ul class="mt-4 grid gap-x-8 gap-y-2 sm:grid-cols-2">
+            {
+              config.social.map((s) => (
+                <li class="text-sm text-text-secondary">
+                  <span class="font-bold text-text-primary">{s.platform}:</span>{' '}
+                  <a href={s.url} target="_blank" rel="noopener noreferrer">
+                    {s.url.replace('https://', '')}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
         </section>
       </div>
 

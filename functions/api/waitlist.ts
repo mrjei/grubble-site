@@ -11,7 +11,8 @@
 import { z } from 'zod';
 
 interface Env {
-  // TODO: set BREVO_API_KEY in the Cloudflare Pages dashboard after deploy.
+  // Configured in the Cloudflare Pages dashboard. Brevo handles storage and the
+  // double opt-in / confirmation email — no repo changes needed for that flow.
   BREVO_API_KEY?: string;
   BREVO_LIST_ID?: string;
   ALLOWED_ORIGIN?: string;
@@ -68,9 +69,9 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
     return json({ ok: true, message: 'Thanks!' }, 200, env);
   }
 
-  // Graceful fallback: no key configured yet (local dev / preview).
+  // Graceful fallback for local dev / preview where the key isn't bound.
+  // Production has BREVO_API_KEY set, so this branch doesn't run there.
   if (!env.BREVO_API_KEY) {
-    // TODO: set BREVO_API_KEY in the Cloudflare Pages dashboard.
     console.log(`[waitlist] BREVO_API_KEY not set — would have added: ${email}`);
     return json({ ok: true, message: "You're on the list!" }, 200, env);
   }
