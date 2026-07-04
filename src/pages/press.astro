@@ -5,10 +5,10 @@ import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
 import config from '../data/config.json';
 
-// Quick stats — keep these honest. Pre-launch, solo-founded, real working demo.
+// Quick stats — keep these honest. Pre-launch, built in-house at Tenvaro, real working demo.
 const stats = [
   { value: 'Pre-launch', label: 'Public web beta live; native iOS + Android next' },
-  { value: 'Solo founder', label: 'AI-augmented, built end to end by one person' },
+  { value: 'Built in-house', label: 'Designed and shipped end to end at Tenvaro' },
   { value: '50+', label: 'Real restaurants live in the Port St. Lucie deck' },
   { value: '4', label: 'AI surfaces running on real Anthropic Claude' },
 ];
@@ -37,7 +37,7 @@ const screenshots = [
 
 <BaseLayout
   title="Press & Investors — Grubble Eats"
-  description="Press, investor, and recruiter resources for Grubble Eats — the AI-powered group food decision app. Tech stack, founder bio, live demo, and contact."
+  description="Press, investor, and recruiter resources for Grubble Eats — the AI-powered group food decision app. Tech stack, company background, live demo, and contact."
 >
   <header class="px-6 py-6 border-b border-border-subtle">
     <a href="/" class="inline-flex items-center gap-3" aria-label="Grubble Eats home">
@@ -135,14 +135,12 @@ const screenshots = [
         </section>
 
         <section>
-          <h2>Founder</h2>
+          <h2>Built by Tenvaro</h2>
           <p>
-            <strong class="text-text-primary">James Blanchard</strong> — founder,
-            Port St. Lucie, Florida. A Healthcare IT Specialist and AI Developer,
-            James builds under the
-            <a href={config.urls.parent} rel="noopener noreferrer">Tenvaro</a>
-            umbrella and ships full products solo, AI-augmented, end to end —
-            building Grubble Eats one night and weekend at a time.
+            Grubble Eats is designed and built in-house by
+            <a href={config.urls.parent} rel="noopener noreferrer">Tenvaro</a>,
+            based in Florida. Every screen, swipe, and AI surface is shipped end
+            to end under the Tenvaro umbrella, with new updates landing weekly.
           </p>
         </section>
 
